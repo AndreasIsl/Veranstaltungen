@@ -1,0 +1,57 @@
+
+/* Container für die Event-Liste */
+.event-list {
+    list-style-type: none; /* Entfernt die Standard-Aufzählungszeichen */
+    padding: 0; /* Entfernt die Standard-Padding */
+    margin: 0; /* Entfernt die Standard-Margin */
+}
+
+/* Stil für jedes Listenelement */
+.event-list-item {
+    border: 1px solid #ddd; /* Leichte Border für jedes Listenelement */
+    border-radius: 8px; /* Abgerundete Ecken */
+    padding: 16px; /* Innenabstand */
+    margin-bottom: 16px; /* Abstand zwischen den Listenelementen */
+    background-color: #f9f9f9; /* Hintergrundfarbe */
+    display: flex; /* Flexbox für Bild und Text */
+    flex-direction: column; /* Bild über dem Text */
+    align-items: center; /* Zentriert den Inhalt horizontal */
+}
+
+/* Stil für den Titel-Link */
+.event-title {
+    text-decoration: none; /* Entfernt die Unterstreichung von Links */
+    color: #000000; /* Farbe für Links */
+    font-size: 5.5em; /* Größerer Font für den Titel */
+    font-weight: bold; /* Fettdruck für den Titel */
+    margin-bottom: 20px; /* Abstand nach dem Titel */
+}
+
+/* Stil für das Bild */
+.event-image {
+    border-radius: 8px; /* Abgerundete Ecken für das Bild */
+    margin-bottom: 12px; /* Abstand nach dem Bild */
+}
+
+/* Stil für die Absätze */
+.event-date,
+.event-description {
+    margin: 4px 0; /* Vertikale Abstände für die Absätze */
+    color: #333; /* Dunkle Textfarbe für bessere Lesbarkeit */
+    font-size: 1em; /* Normale Textgröße für die Absätze */
+}
+
+/* Stil für die Beschreibung im Kursivstil */
+.event-description em {
+    font-style: italic; /* Kursivschrift für die Beschreibung */
+}
+
+
+body {
+    /* Erzeugt einen linearen Verlauf von Gelb über Rot nach Weiß */
+    background: linear-gradient(to bottom, #ffff00, #ff0000, #ffffff);
+    /* Optional: Setzt die Hintergrundfarbe auf die gleiche Weise für andere Elemente */
+    background-size: 100% 100%; /* Macht den Verlauf für das ganze Fenster sichtbar */
+    background-repeat: no-repeat; /* Verhindert das wiederholen des Hintergrunds */
+    background-attachment: fixed; /* Macht den Hintergrund fixiert, so dass er beim Scrollen nicht verschoben wird */
+}

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layout/baseLayout.astro";
-import Veranstaltung from "../components/VeranstaltungItem.astro";
+import Event from "../components/EventItem.astro";
 
 const pageTitle = "Veranstaltungen";
 const apiUrl = "https://data.carinthia.com/api/v4/endpoints/557ea81f-6d65-6476-9e01-d196112514d2?include=image&token=9962098a5f6c6ae8d16ad5aba95afee0";
@@ -11,34 +11,54 @@ const data = await response.json();
 let events = [];
 if (data && data["@graph"]) {
   events = data["@graph"].map((event) => {
+
+    const cleanDescription = event.description.replace(/<[^>]+>/g, '');
+	let img = ``; 
+	if (event.image && Array.isArray(event.image) && event.image.length > 0) {
+	// Iteriere durch jedes Bild-Objekt im Array
+    event.image.forEach((image, index) => {
+		console.log(`Good`);
+		if (image.contentUrl) {
+            console.log(`Image ${index} URL: ${image.contentUrl}`);
+			img = image.contentUrl;
+        }
+    });
+	} else {
+    console.log('event.image is not an array or is empty.');
+	}
     return {
       id: event["@id"],
       title: event.name,
-      description: event.description,
+      description: cleanDescription,
       startDate: event.startDate,
       endDate: event.endDate,
-      imageUrl: event.image?.[0]?.dc?.dynamicDefaultUrl || "" // Extrahiere das Bild, falls vorhanden
+      thumbnailUrl: img
     };
   });
 } else {
   console.error("Keine Veranstaltungsdaten gefunden");
 }
 
+
+
+
 ---
 <BaseLayout pageTitle={pageTitle}>
+	<img src=motto.png  alt={'Motto Bild'} class="event-image"/>
 
-	<p>Das sind alle Veranstaltungen:</p>
-  
+	
+
 	{events.length > 0 ? (
 	  <ul>
 		{events.map((event) => (
-		  <Veranstaltung 
+		  <Event 
 			url={`/veranstaltungen/${event.id}`} 
 			title={event.title} 
 			description={event.description} 
 			startDate={event.startDate} 
 			endDate={event.endDate} 
-			imageUrl={event.imageUrl}
+			thumbnailUrl={event.thumbnailUrl}
+			
 		  />
 		))}
 	  </ul>

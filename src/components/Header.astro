@@ -1,8 +1,46 @@
 ---
 import Navigation from "./Navigation.astro";
+const { pageTitle } = Astro.props;
+
 ---
-<header>
-    <nav>
-      <Navigation />
-    </nav>
-  </header>
+<!-- Astro Component -->
+<header class="Header">
+  <nav>
+      <h1>{pageTitle}</h1>
+      <div class="navLinks">
+          <Navigation /> <!-- Hier wird deine Navigation eingefügt -->
+      </div>
+  </nav>
+</header>
+
+<style>
+.Header {
+  border: 0px solid #000000; /* Leichte Border für den Header */
+  padding: 16px; /* Innenabstand */
+  margin-bottom: 10px; /* Abstand zwischen dem Header und dem nächsten Element */
+  background-color: #00000050; /* Hintergrundfarbe mit Transparenz */
+  box-sizing: border-box; /* Stellt sicher, dass Padding und Border zur Gesamtbreite zählen */
+
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; /* Verteilt den Platz zwischen dem Titel und der Navigation */
+  align-items: center; /* Zentriert die Items vertikal */
+}
+
+.navLinks {
+  display: flex; /* Stellen Sie sicher, dass die Navigation als flexibles Container fungiert */
+  margin-left: auto; /* Verschiebt die Navigation nach rechts */
+}
+
+.navLinks a {
+  margin-left: 16px; /* Abstand zwischen den Links */
+  text-decoration: none; /* Entfernt die Unterstreichung der Links */
+  color: #fff; /* Linkfarbe */
+}
+
+.navLinks a:hover {
+  text-decoration: underline; /* Unterstreicht Links beim Hover */
+}
+</style>
