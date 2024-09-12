@@ -1,10 +1,10 @@
 ---
 import Navigation from "./Navigation.astro";
 const { pageTitle } = Astro.props;
-
+//TODO make the header use the whole width
 ---
 <!-- Astro Component -->
-<header class="Header">
+<header>
   <nav>
       <h1>{pageTitle}</h1>
       <div class="navLinks">
@@ -14,19 +14,27 @@ const { pageTitle } = Astro.props;
 </header>
 
 <style>
-.Header {
+header {
+  
   border: 0px solid #000000; /* Leichte Border für den Header */
-  padding: 16px; /* Innenabstand */
+  padding: 8px; /* Innenabstand */
+  margin: 0px;
   margin-bottom: 10px; /* Abstand zwischen dem Header und dem nächsten Element */
   background-color: #00000050; /* Hintergrundfarbe mit Transparenz */
   box-sizing: border-box; /* Stellt sicher, dass Padding und Border zur Gesamtbreite zählen */
-
+  width: 100%;
 }
 
 nav {
   display: flex;
   justify-content: space-between; /* Verteilt den Platz zwischen dem Titel und der Navigation */
   align-items: center; /* Zentriert die Items vertikal */
+}
+
+h1 {
+  margin: 10px;
+  color: #fff;
+  font-size: 3em;
 }
 
 .navLinks {

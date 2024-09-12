@@ -44,12 +44,12 @@ if (data && data["@graph"]) {
 
 ---
 <BaseLayout pageTitle={pageTitle}>
-	<img src=motto.png  alt={'Motto Bild'} class="event-image"/>
+	
 
 	
 
 	{events.length > 0 ? (
-	  <ul>
+	  <ul  class="event-list ">
 		{events.map((event) => (
 		  <Event 
 			url={`/veranstaltungen/${event.id}`} 
@@ -67,4 +67,19 @@ if (data && data["@graph"]) {
 	)}
 	
 </BaseLayout>
+
+<style>
+	.imgContainer{
+		display: flex;
+    	justify-content: center;  /* Zentriert das Bild horizontal */
+    	align-items: center;      /* Zentriert das Bild vertikal (wenn Höhe gesetzt) */
+    	width: 100%;              /* Container nimmt die volle Breite ein */
+    	height: auto;             /* Falls du auch eine Höhe angeben möchtest */
+	}
+
+	img {
+		height: auto;         /* Behalte das Seitenverhältnis bei */
+  		object-fit: cover;    /* Verhindert Verzerrungen und füllt den Bereich */
+	}
+</style>
 
