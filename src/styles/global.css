@@ -25,7 +25,7 @@ html, body {
     border: 1px solid #000000; /* Leichte Border für jedes Listenelement */
     border-radius: 8px; /* Abgerundete Ecken */
     padding: 16px; /* Innenabstand */
-    margin: 80px; /* Abstand zwischen den Listenelementen */
+    margin: 30px; /* Abstand zwischen den Listenelementen */
     background-color: #00000099; /* Hintergrundfarbe */
     display: flex; /* Flexbox für Bild und Text */
     flex-direction: column; /* Bild über dem Text */

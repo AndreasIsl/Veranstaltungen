@@ -5,32 +5,25 @@ export async function getStaticPaths() {
   const allEvents = await Astro.glob("../posts/*.md");
 
   const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+    ...new Set(allEvents.map((event) => event.frontmatter.tags).flat()),
   ];
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.frontmatter.tags.includes(tag)
+    const filteredEvents = allEvents.filter((event) =>
+    event.frontmatter.tags.includes(tag)
     );
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { event: filteredEvents },
     };
   });
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { events } = Astro.props;
 ---
 
 <BaseLayout pageTitle={tag}>
-  <p>Posts tagged with {tag}</p>
-  <ul>
-    {
-      posts.map((post) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
-      ))
-    }
-  </ul>
+
 </BaseLayout>
 //TODO rewrite this file to give each event a detailed site

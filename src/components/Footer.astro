@@ -1,4 +1,26 @@
 ---
-import Social from "./Social.astro"
 ---
-<Social/>
+<div>
+    <a href="/about/">About</a>
+</div>
+
+
+<style>
+
+div{
+    display: flex;
+    justify-content: center;  /* Zentriert das Bild horizontal */
+    align-items: center;      /* Zentriert das Bild vertikal (wenn Höhe gesetzt) */
+    width: 100%;              /* Container nimmt die volle Breite ein */
+    height: auto; 
+    background-color: #00000050; /* Hintergrundfarbe mit Transparenz */
+   
+}
+
+a{
+    margin: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 2em;
+}
+</style>

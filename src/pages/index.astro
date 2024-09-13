@@ -7,6 +7,8 @@ const apiUrl = "https://data.carinthia.com/api/v4/endpoints/557ea81f-6d65-6476-9
 const response = await fetch(apiUrl);
 const data = await response.json();
 
+
+
 // Extrahiere die Veranstaltungen aus dem @graph-Array
 let events = [];
 if (data && data["@graph"]) {
@@ -17,15 +19,13 @@ if (data && data["@graph"]) {
 	if (event.image && Array.isArray(event.image) && event.image.length > 0) {
 	// Iteriere durch jedes Bild-Objekt im Array
     event.image.forEach((image, index) => {
-		console.log(`Good`);
 		if (image.contentUrl) {
-            console.log(`Image ${index} URL: ${image.contentUrl}`);
 			img = image.contentUrl;
         }
     });
-	} else {
-    console.log('event.image is not an array or is empty.');
-	}
+	} 
+	console.log(event["@id"]);
+	
     return {
       id: event["@id"],
       title: event.name,
