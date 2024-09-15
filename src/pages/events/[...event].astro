@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layout/baseLayout.astro';
+import { db, EventTable } from 'astro:db';
+import { slugify } from '../../scripts/GlobalFunctions';
+
+
+export async function getStaticPaths() {
+  let events = await db.select().from(EventTable);
+  const uniqueTags = [
+    ...new Set(events.map((event) => event.id).flat()),
+  ];
+
+
+  return uniqueTags.map((id) => {
+    const filteredEvents = events.filter((event) =>
+    event.id.includes(id)
+    );
+
+    return {
+      params: { event: id },
+      props: { title: filteredEvents[0].title, 
+        startDate: filteredEvents[0].startDate,
+         endDate: filteredEvents[0].endDate,
+          description: filteredEvents[0].description,
+          thumbnailUrl: filteredEvents[0].thumbnailUrl },
+      
+    };
+  });
+}
+
+const { event } = Astro.params;
+const { title,startDate,endDate,description,thumbnailUrl } = Astro.props;
+---
+
+<BaseLayout pageTitle={slugify(title)}>
+
+  {thumbnailUrl && (
+    <img src={thumbnailUrl} width="500" alt={title || 'Event Bild'} class="event-image"/>
+    )}
+  <p class="event-date">Start : {startDate.slice(0,10)} {startDate.slice(11,19)} </p>
+  <p class="event-date">Ende : {endDate && endDate.slice(0,10)} {endDate && endDate.slice(11,19)}</p>
+  <p class="event-description"><em>{description}</em></p>
+
+  
+
+</BaseLayout>

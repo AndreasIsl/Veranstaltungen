@@ -1,28 +1,41 @@
 ---
 import Navigation from "./Navigation.astro";
+import Hamburger from "./Hamburger.astro";
+import ThemeIcon from "./ThemeIcon.astro";
 const { pageTitle } = Astro.props;
-//TODO make the header use the whole width
 ---
-<!-- Astro Component -->
-<header>
+<header id="header">
   <nav>
       <h1>{pageTitle}</h1>
-      <div class="navLinks">
-          <Navigation /> <!-- Hier wird deine Navigation eingefügt -->
+
+      <div class="container">
+
+        <div id="nav-links" class="nav-links">
+          <ThemeIcon/>
+          <Navigation/> 
+        </div>
+  
+        <div id="hamburger">
+          <Hamburger />
+        </div>
+
       </div>
+     
+      
   </nav>
 </header>
 
 <style>
+
 header {
-  
+  position: fixed; /* Fixiere den Header oben auf der Seite */
   border: 0px solid #000000; /* Leichte Border für den Header */
   padding: 8px; /* Innenabstand */
   margin: 0px;
-  margin-bottom: 10px; /* Abstand zwischen dem Header und dem nächsten Element */
   background-color: #00000050; /* Hintergrundfarbe mit Transparenz */
   box-sizing: border-box; /* Stellt sicher, dass Padding und Border zur Gesamtbreite zählen */
   width: 100%;
+  transition: top 0.3s; /* Sanfter Übergang beim Ein- und Ausblenden */
 }
 
 nav {
@@ -37,18 +50,67 @@ h1 {
   font-size: 3em;
 }
 
-.navLinks {
-  display: flex; /* Stellen Sie sicher, dass die Navigation als flexibles Container fungiert */
+.container{
+  margin-left: auto; /* Verschiebt die Navigation nach rechts */
+  display: flex;
+  align-items: center;
+}
+
+.Hamburger{
   margin-left: auto; /* Verschiebt die Navigation nach rechts */
 }
 
-.navLinks a {
-  margin-left: 16px; /* Abstand zwischen den Links */
-  text-decoration: none; /* Entfernt die Unterstreichung der Links */
-  color: #fff; /* Linkfarbe */
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s ease;
 }
 
-.navLinks a:hover {
-  text-decoration: underline; /* Unterstreicht Links beim Hover */
+.nav-links.show {
+  visibility: visible;
+  opacity: 1;
 }
+
 </style>
+
+<script>
+  let lastScrollTop = 0; // Initiale Position
+  let ticking = false;
+
+  function updateHeader() {
+      const header = document.getElementById('header');
+      const currentScroll = document.documentElement.scrollTop;
+
+      if (currentScroll > lastScrollTop) {
+          // Wenn nach unten gescrollt wird
+          header.style.top = "-100px"; // Höhe des Headers (anpassen, falls notwendig)
+      } else {
+          // Wenn nach oben gescrollt wird
+          header.style.top = "0";
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Für Safari
+      ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+      if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+      }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('show'); // Toggle die Klasse, um Navigation ein-/auszublenden
+    });
+  });
+
+</script>
+
+

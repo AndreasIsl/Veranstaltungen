@@ -1,5 +1,4 @@
 ---
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 const { pageTitle } = Astro.props;
@@ -15,7 +14,13 @@ const { pageTitle } = Astro.props;
 	<body>
 		
         <Header  pageTitle={pageTitle}/>
+		<div></div>
         <slot />
-        <Footer />
 	</body>
 </html>
+
+<style>
+	div {
+		padding-top: 100px; /* Hier 80px oder je nach Header-Höhe anpassen */
+	}
+</style>

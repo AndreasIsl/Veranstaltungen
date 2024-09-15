@@ -6,6 +6,7 @@ html, body {
     width: 100%;
     height: 100%;
     
+    
 }
 
 /* Container für die Event-Liste */
@@ -62,11 +63,27 @@ html, body {
 }
 
 
-body {
-    /* Erzeugt einen linearen Verlauf von Gelb über Rot nach Weiß */
-    /*background: linear-gradient(to bottom, #ffff00, #ff0000, #ffffff);*/
-    /* Optional: Setzt die Hintergrundfarbe auf die gleiche Weise für andere Elemente */
-    background-size: 100% 100%; /* Macht den Verlauf für das ganze Fenster sichtbar */
-    background-repeat: no-repeat; /* Verhindert das wiederholen des Hintergrunds */
-    background-attachment: fixed; /* Macht den Hintergrund fixiert, so dass er beim Scrollen nicht verschoben wird */
+
+
+@media screen and (min-width: 636px) {
+    .nav-links {
+      margin-left: 5em;
+      display: block;
+      position: static;
+      width: auto;
+      background: none;
+    }
+  
+    .nav-links a {
+      display: inline-block;
+      padding: 15px 20px;
+    }
+  
 }
+
+html.dark {
+    background-color: #0d0950;
+    color: #fff;
+  }
+  
+  

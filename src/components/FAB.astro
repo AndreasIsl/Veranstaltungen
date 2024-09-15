@@ -1,0 +1,36 @@
+<button class="fab" id="fabButton">
+    <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,4 4,20 20,20" fill="#ffffff"/>
+</button>
+
+<style>
+    .fab {
+    background-color: #00000090;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 8px;
+    }
+
+    .fab:hover {
+        border: 1px solid #3783d4;
+    
+    }
+</style>
+
+<script>
+    document.getElementById('fabButton').addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+</script>
