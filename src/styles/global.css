@@ -10,61 +10,66 @@ html, body {
 
 /* Container für die Event-Liste */
 .event-list {
-    list-style-type: none; /* Entfernt die Standard-Aufzählungszeichen */
-    padding: 0; /* Entfernt die Standard-Padding */
-    margin: 0; /* Entfernt die Standard-Margin */
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 
 /* Stil für jedes Listenelement */
 .event-list-item {
-    flex: 1 1 calc(33.333% - 20px);
-
-    border: 1px solid #000000; /* Leichte Border für jedes Listenelement */
-    border-radius: 8px; /* Abgerundete Ecken */
-    padding: 16px; /* Innenabstand */
-    margin: 30px; /* Abstand zwischen den Listenelementen */
-    background-color: #00000099; /* Hintergrundfarbe */
-    display: flex; /* Flexbox für Bild und Text */
-    flex-direction: column; /* Bild über dem Text */
-    align-items: center; /* Zentriert den Inhalt horizontal */
+    height: 800px;
+    border: 1px solid #000000; 
+    border-radius: 8px; 
+    padding: 16px; 
+    margin: 30px; 
+    background-color: #00000099; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
     max-width: 500px;
 }
 
 /* Stil für den Titel-Link */
 .event-title {
-    text-decoration: none; /* Entfernt die Unterstreichung von Links */
-    color: #ffffff; /* Farbe für Links */
-    font-size: 2em; /* Größerer Font für den Titel */
-    font-weight: bold; /* Fettdruck für den Titel */
-    margin-bottom: 20px; /* Abstand nach dem Titel */
+    text-decoration: none; 
+    color: #ffffff; 
+    font-size: 2em; 
+    font-weight: bold; 
+    margin-bottom: 20px; 
 }
 
 /* Stil für das Bild */
 .event-image {
-    border-radius: 8px; /* Abgerundete Ecken für das Bild */
-    margin-bottom: 12px; /* Abstand nach dem Bild */
+    border-radius: 8px; 
+    margin-bottom: 12px; 
+    max-height: 464px;
 }
 
 /* Stil für die Absätze */
 .event-date,
 .event-description {
-    margin: 4px 0; /* Vertikale Abstände für die Absätze */
-    color: #ffffff; /* Dunkle Textfarbe für bessere Lesbarkeit */
-    font-size: 1em; /* Normale Textgröße für die Absätze */
+    margin: 4px 0; 
+    color: #ffffff; 
+    font-size: 1em;
 }
 
 /* Stil für die Beschreibung im Kursivstil */
 .event-description em {
-    font-style: italic; /* Kursivschrift für die Beschreibung */
+    font-style: italic; 
 }
 
 
 html.dark {
     background-color: #0d0950;
     color: #fff;
-  }
+}
   
-  
+@media (max-width: 1100px) {
+    .event-list-item {
+        margin: 30px auto; /* Automatische horizontale Zentrierung */
+    }
+}
