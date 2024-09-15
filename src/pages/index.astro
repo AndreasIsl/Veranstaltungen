@@ -5,7 +5,7 @@ import FAB from "../components/FAB.astro";
 import { slugify } from "../scripts/GlobalFunctions";
 import { db, EventTable } from 'astro:db';
 
-const pageTitle = "Veranstaltungen";
+const pageTitle = "Events";
 const apiUrl = "https://data.carinthia.com/api/v4/endpoints/557ea81f-6d65-6476-9e01-d196112514d2?include=image&token=9962098a5f6c6ae8d16ad5aba95afee0";
 const response = await fetch(apiUrl);
 const data = await response.json();
