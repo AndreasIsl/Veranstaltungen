@@ -2,12 +2,13 @@
 const pageTitle = "About";
 import BaseLayout from "../layout/baseLayout.astro";
 import Social from "../components/Social.astro";
+import mylogo from "../images/mylogo.png"
 //TODO this side
 ---
 <BaseLayout pageTitle={pageTitle}>
     <div>
 
-        <img src={"../../public/myLogo.png"} alt= 'My Logo'} class="my-Logo"/>
+        <img src={mylogo.src} alt= 'My Logo' class="my-Logo"/>
 
         <p>Diese Webseite dient dazu, meine Fähigkeiten als Full-Stack-Entwickler zu präsentieren und kontinuierlich weiterzuentwickeln.</p>
     
