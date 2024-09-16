@@ -42,6 +42,10 @@ html, body {
     margin-bottom: 20px; 
 }
 
+.event-title:hover{
+    text-decoration: underline;
+} 
+
 /* Stil für das Bild */
 .event-image {
     border-radius: 8px; 
