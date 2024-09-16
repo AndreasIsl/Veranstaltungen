@@ -8,7 +8,6 @@ const { title, url, description, startDate, endDate, thumbnailUrl } = Astro.prop
     <a class="event-title" href={url}>{title}</a>
     <p class="event-date">Start : {startDate.slice(0,10)} {startDate.slice(11,19)} </p>
     <p class="event-date">Ende : {endDate && endDate.slice(0,10)} {endDate && endDate.slice(11,19)}</p>
-    <p class="event-description"><em>{description}</em></p>
     
     
 </li>

@@ -1,8 +1,7 @@
 ---
-import EventLayout from "../../layout/EventLayout.astro";
 import { db, EventTable } from 'astro:db';
 import BaseLayout from "../../layout/baseLayout.astro";
-
+import FAB from '../../components/FAB.astro';
 
 export async function getStaticPaths() {
   let events = await db.select().from(EventTable);
@@ -30,10 +29,9 @@ const { title,startDate,endDate,description,thumbnailUrl } = Astro.props;
 
   <div class="eventsContainer">
     <h1 class="events-title">{title}</h1>
-    {thumbnailUrl && (
-      <img src={thumbnailUrl}  alt={title || 'Event Bild'} class="event-image"/>
-    )}
-    
+
+    <img src={thumbnailUrl}  alt={title || 'Event Bild'} class="event-image"/>
+   
     <div class="dateContainer">
 
       <p class="events-date">
@@ -47,11 +45,19 @@ const { title,startDate,endDate,description,thumbnailUrl } = Astro.props;
 
     <p class="events-description"><em>{description}</em></p>
 
+    <div class="fab-container">
+      <FAB/>
+   </div>
+
   </div>
 
 </BaseLayout>
 
 <style>
+
+  img{
+    border: 10px solid #00000090;
+  }
   .eventsContainer {
     display: flex;
     flex-direction: column;
@@ -81,8 +87,14 @@ const { title,startDate,endDate,description,thumbnailUrl } = Astro.props;
   .events-title{
     font-size: 3em;
     max-width: 1000px;
-
-
   }
+
+  .fab-container {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		z-index: 1000;
+	}
+
 </style>
 

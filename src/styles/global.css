@@ -21,7 +21,7 @@ html, body {
 
 /* Stil für jedes Listenelement */
 .event-list-item {
-    height: 800px;
+    height: wrap;
     border: 1px solid #000000; 
     border-radius: 8px; 
     padding: 16px; 
@@ -68,6 +68,7 @@ html.dark {
     color: #fff;
 }
   
+/*für kleinere Screens*/
 @media (max-width: 1100px) {
     .event-list-item {
         margin: 30px auto; /* Automatische horizontale Zentrierung */
