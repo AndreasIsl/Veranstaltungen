@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "build": "astro build --remote",
+    "build": "astro build",
     "dev": "astro dev",
     "start": "astro dev",
     "preview": "astro preview",
