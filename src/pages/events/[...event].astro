@@ -1,46 +1,88 @@
 ---
-import BaseLayout from '../../layout/baseLayout.astro';
+import EventLayout from "../../layout/EventLayout.astro";
 import { db, EventTable } from 'astro:db';
-import { slugify } from '../../scripts/GlobalFunctions';
+import BaseLayout from "../../layout/baseLayout.astro";
 
 
 export async function getStaticPaths() {
   let events = await db.select().from(EventTable);
-  const uniqueTags = [
-    ...new Set(events.map((event) => event.id).flat()),
-  ];
-
-
-  return uniqueTags.map((id) => {
-    const filteredEvents = events.filter((event) =>
-    event.id.includes(id)
-    );
+  
+  return events.flatMap((event) => {
 
     return {
-      params: { event: id },
-      props: { title: filteredEvents[0].title, 
-        startDate: filteredEvents[0].startDate,
-         endDate: filteredEvents[0].endDate,
-          description: filteredEvents[0].description,
-          thumbnailUrl: filteredEvents[0].thumbnailUrl },
-      
+
+      params: { event: event.id },
+      props: { title: event.title, 
+        startDate: event.startDate,
+         endDate: event.endDate,
+          description: event.description,
+          thumbnailUrl: event.thumbnailUrl },
     };
   });
+
 }
 
 const { event } = Astro.params;
 const { title,startDate,endDate,description,thumbnailUrl } = Astro.props;
 ---
 
-<BaseLayout pageTitle={slugify(title)}>
+<BaseLayout pageTitle = "Events">
 
-  {thumbnailUrl && (
-    <img src={thumbnailUrl} width="500" alt={title || 'Event Bild'} class="event-image"/>
+  <div class="eventsContainer">
+    <h1 class="events-title">{title}</h1>
+    {thumbnailUrl && (
+      <img src={thumbnailUrl}  alt={title || 'Event Bild'} class="event-image"/>
     )}
-  <p class="event-date">Start : {startDate.slice(0,10)} {startDate.slice(11,19)} </p>
-  <p class="event-date">Ende : {endDate && endDate.slice(0,10)} {endDate && endDate.slice(11,19)}</p>
-  <p class="event-description"><em>{description}</em></p>
+    
+    <div class="dateContainer">
 
-  
+      <p class="events-date">
+        <b>Start:</b> {startDate.slice(0, 10)} {startDate.slice(11, 19)}
+      </p>
+
+      <p class="events-date">
+        <b>Ende:</b>  {endDate && endDate.slice(0,10)} {endDate && endDate.slice(11,19)}
+      </p>
+    </div>
+
+    <p class="events-description"><em>{description}</em></p>
+
+  </div>
 
 </BaseLayout>
+
+<style>
+  .eventsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .events-date{
+    font-size: 2em;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+  }
+
+  .dateContainer{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .events-description{
+    max-width: 1000px;
+    font-size: 2em;
+
+  }
+
+  .events-title{
+    font-size: 3em;
+    max-width: 1000px;
+
+
+  }
+</style>
+

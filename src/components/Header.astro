@@ -76,29 +76,30 @@ h1 {
 </style>
 
 <script>
-  let lastScrollTop = 0; // Initiale Position
+  let lastScrollTop = 0;
   let ticking = false;
 
   function updateHeader() {
-      const header = document.getElementById('header');
-      const currentScroll = document.documentElement.scrollTop;
+    const header = document.getElementById('header');
+    const currentScroll = document.documentElement.scrollTop;
 
-      if (currentScroll > lastScrollTop) {
-          // Wenn nach unten gescrollt wird
-          header.style.top = "-150px"; 
-          // Wenn nach oben gescrollt wird
-          header.style.top = "0";
-      }
+    if (currentScroll > lastScrollTop) {
+      // Wenn nach unten gescrollt wird
+      header.style.top = "-150px"; 
+    } else {
+      // Wenn nach oben gescrollt wird
+      header.style.top = "0";
+    }
 
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
-      ticking = false;
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
+    ticking = false;
   }
 
   window.addEventListener('scroll', function() {
-      if (!ticking) {
-          window.requestAnimationFrame(updateHeader);
-          ticking = true;
-      }
+  if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+  }
   });
 
   document.addEventListener('DOMContentLoaded', function() {

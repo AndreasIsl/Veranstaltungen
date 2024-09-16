@@ -75,7 +75,7 @@ if(events.length == 0){
 	  <ul  class="event-list ">
 		{events.map((event) => (
 		  <Event 
-			url={`/events/${slugify(event.title)}`} 
+			url={`/events/${event.id}`} 
 			title={event.title} 
 			description={event.description} 
 			startDate={event.startDate} 
